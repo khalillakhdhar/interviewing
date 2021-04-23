@@ -297,6 +297,11 @@ button,
 input {
   overflow: visible;
 }
+input[type="file"]
+{
+  overflow: visible;
+
+}
 
 button,
 select {
