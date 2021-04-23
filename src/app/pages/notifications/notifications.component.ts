@@ -1,76 +1,61 @@
 import { Component, OnInit } from "@angular/core";
 import { ToastrService } from 'ngx-toastr';
+import { Utilisateur } from "src/app/classes/utilisateur";
+import { ProduitService } from "src/app/services/produit.service";
+import { UserService } from "src/app/services/user.service";
+import { Produit } from '../../classes/produit';
 
 @Component({
   selector: "app-notifications",
   templateUrl: "notifications.component.html"
 })
 export class NotificationsComponent implements OnInit {
-  staticAlertClosed  = false;
-  staticAlertClosed1 = false;
-  staticAlertClosed2 = false;
-  staticAlertClosed3 = false;
-  staticAlertClosed4 = false;
-  staticAlertClosed5 = false;
-  staticAlertClosed6 = false;
-  staticAlertClosed7 = false;
+  id:string;
+grade:string;
 
-  constructor(private toastr: ToastrService) {}
+produit:Produit;
+produits:Produit[];
+constructor(private produitService:ProduitService) { }
 
-  showNotification(from, align){
+ngOnInit(): void {
+  this.produit=new Produit();
+  this.id=localStorage.getItem("id");
+  this.read();
+}
+read()
+{
+this.produitService.read_Produits().subscribe(data => {
 
-      const color = Math.floor((Math.random() * 5) + 1);
+  this.produits = data.map(e => {
+    return {
+      id: e.payload.doc.id,
 
-      switch(color){
-        case 1:
-        this.toastr.info('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Welcome to <b>Black Dashboard Angular</b> - a beautiful freebie for every web developer.', '', {
-           disableTimeOut: true,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-info alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 2:
-        this.toastr.success('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Welcome to <b>Black Dashboard Angular</b> - a beautiful freebie for every web developer.', '', {
-           disableTimeOut: true,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-success alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 3:
-        this.toastr.warning('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Welcome to <b>Black Dashboard Angular</b> - a beautiful freebie for every web developer.', '', {
-           disableTimeOut: true,
-           closeButton: true,
-           enableHtml: true,
-           toastClass: "alert alert-warning alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-        break;
-        case 4:
-        this.toastr.error('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Welcome to <b>Black Dashboard Angular</b> - a beautiful freebie for every web developer.', '', {
-           disableTimeOut: true,
-           enableHtml: true,
-           closeButton: true,
-           toastClass: "alert alert-danger alert-with-icon",
-           positionClass: 'toast-' + from + '-' +  align
-         });
-         break;
-         case 5:
-         this.toastr.show('<span class="tim-icons icon-bell-55" [data-notify]="icon"></span> Welcome to <b>Black Dashboard Angular</b> - a beautiful freebie for every web developer.', '', {
-            disableTimeOut: true,
-            closeButton: true,
-            enableHtml: true,
-            toastClass: "alert alert-primary alert-with-icon",
-            positionClass: 'toast-' + from + '-' +  align
-          });
-        break;
-        default:
-        break;
-      }
-  }
+       titre: e.payload.doc.data()["titre"],
+       prix: e.payload.doc.data()["prix"],
+       photo: e.payload.doc.data()["photo"],
+       categorie: e.payload.doc.data()["categorie"],
+       quantite_totale: e.payload.doc.data()["quantite_totale"],
+       description: e.payload.doc.data()["description"],
+      
+      
 
-  ngOnInit() {}
+    };
+  });
+
+
+  console.log("liste",this.produits);
+
+});
+
+
+
+}
+add()
+{
+  let pr=Object.assign({},this.produits);
+this.produitService.create_NewProduit(pr);
+alert("added successfully");
+
+
+}
 }

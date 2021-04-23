@@ -1,10 +1,73 @@
 
 <div class=" content">
   <div class=" row">
+
     <div class=" col-md-12">
       <div class=" card card-plain">
-        <div class=" card-header">Google Maps</div>
-        <div class=" card-body"><div class=" map" id="map"></div></div>
+        <div class=" card-header">
+          <h4 class=" card-title">Gestion des catégories</h4>
+          <p class=" category">Ajoutez une catégorie</p>
+      <div align="center">    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+Ajouter une catégorie
+</button>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Ajouter</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <table class="table table-borderless" >
+            <tr>
+         <td><input placeholder="Titre" class="form-control" type="text" name="titre" [(ngModel)]="categorie.titre"></td>
+            
+            </tr>
+            <tr>
+              <td><textarea class="form-control" placeholder="description" name="description" [(ngModel)]="categorie.description"></textarea></td>
+            
+            </tr>
+            <tr><td colspan="2"><input type="submit" (click)="save()" value="ajouter" class="btn btn-primary"></td></tr>
+          </table>
+        </form>
+      </div>
+      <div class="modal-footer">
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive">
+            <table class=" table tablesorter" id="">
+              <thead class=" text-primary">
+                <tr>
+                  <th>Identifiant</th>
+                  <th>Titre</th>
+                  <th>Description</th>
+                  <th class=" text-center">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+          
+                <tr *ngFor="let cats of categories">
+                  <td>{{cats.id}}</td>
+                  <td>{{cats.titre}}</td>
+                  <td>{{cats.description}}</td>
+                  <td class=" text-center"><button class="btn btn-danger" (click)="delete(cats.id)">Supprimer</button></td>
+                </tr>
+              
+              
+              </tbody>
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   </div>
