@@ -50,20 +50,8 @@ export const ROUTES: RouteInfo[] = [
     icon: "icon-puzzle-10",
     class: ""
   },
-  {
-    path: "/typography",
-    title: "Déconnexion",
-    rtlTitle: "طباعة",
-    icon: "icon-lock-center",
-    class: ""
-  },
-  {
-    path: "/rtl",
-    title: "Version arabe",
-    rtlTitle: "ار تي ال",
-    icon: "icon-world",
-    class: ""
-  }
+
+ 
 ];
 
 @Component({
@@ -77,6 +65,8 @@ export class SidebarComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
+    if(localStorage.length==0)
+    window.location.replace("/#/login")
     this.menuItems = ROUTES.filter(menuItem => menuItem);
   }
   isMobileMenu() {
