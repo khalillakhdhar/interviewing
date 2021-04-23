@@ -5,12 +5,20 @@ import { Routes, RouterModule } from "@angular/router";
 
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
 import { AuthLayoutComponent } from './layouts/auth-layout/auth-layout.component';
+import { ConnexionComponent } from './connexion/connexion.component';
+import { InscriptionComponent } from './inscription/inscription.component';
 
 const routes: Routes = [
   {
     path: "",
     redirectTo: "dashboard",
     pathMatch: "full"
+  },
+  {
+    path:"login", component:ConnexionComponent
+  },
+  {
+    path:"login/inscrire", component:InscriptionComponent
   },
   {
     path: "",
@@ -29,7 +37,9 @@ const routes: Routes = [
       {
         path: '',
         loadChildren: './layouts/auth-layout/auth-layout.module#AuthLayoutModule'
-      }
+      },
+      
+
     ]
   },
   {
