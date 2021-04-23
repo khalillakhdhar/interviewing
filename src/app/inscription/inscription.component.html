@@ -1,0 +1,47 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+  <div class="container">
+    <div class="row">
+      <div class="col-sm">
+      </div>
+      <div class="col-sm">
+        <form #myForm="ngForm" (submit)="inscrire()" >
+          <h1>Inscription</h1>
+            <div class="mb-3">
+              <label  class="form-label">Nom </label>
+              <input type="email" [(ngModel)]="user.nom" class="form-control" name="nom"  >
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">adresse </label>
+              <textarea class="form-control" [(ngModel)]="user.adresse" name="adresse"  ></textarea>
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">ville </label>
+              <input type="text" required [(ngModel)]="user.ville" class="form-control" name="ville"  >
+            </div>
+            
+            <div class="mb-3">
+              <label  class="form-label">code postale </label>
+              <input type="text" required class="form-control" [(ngModel)]="user.codepostale" name="code"  >
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">téléphone </label>
+              <input type="text" required [(ngModel)]="user.telephone" class="form-control" name="tel"  >
+            </div>
+            <div class="mb-3">
+              <label  class="form-label">Email </label>
+              <input type="email" required [(ngModel)]="user.email" class="form-control" name="email"  >
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Mot de passe</label>
+              <input type="password" required name="mdp" [(ngModel)]="user.mdp" class="form-control" id="exampleInputPassword1">
+            </div>
+            
+            <button type="submit" [disabled]="myForm.invalid" class="btn btn-primary">S'inscrire</button>
+            <br>            <a href="../#/login">Se connecter</a>
+
+          </form>      </div>
+      <div class="col-sm">
+      </div>
+    </div>
+  </div>
