@@ -3,7 +3,7 @@ export class Produit {
     titre:string;
     prix:number;
     photo:string;
-    catégorie:string;
+    categorie:string;
     quantite_totale:number;
     description:string;
     
