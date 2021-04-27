@@ -11,6 +11,14 @@ import { AngularFireDatabaseModule } from '@angular/fire/database';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { environment } from '../environments/environment';
 
+//storage
+import {
+  AngularFireStorageModule,
+  AngularFireStorageReference,
+  AngularFireUploadTask,
+} from "@angular/fire/storage";
+
+
 
 import { AppComponent } from "./app.component";
 import { AdminLayoutComponent } from "./layouts/admin-layout/admin-layout.component";
@@ -36,6 +44,8 @@ import { InscriptionComponent } from './inscription/inscription.component';
     AngularFirestoreModule,
     AngularFireDatabaseModule,
     AppRoutingModule,
+    AngularFireDatabaseModule,
+    AngularFirestoreModule,
     ToastrModule.forRoot()
   ],
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent, ConnexionComponent, InscriptionComponent],
