@@ -19,12 +19,37 @@ selectedFile: File = null;
 fb = "";
 produit:Produit;
 produits:Produit[];
-constructor(private produitService:ProduitService) { }
+constructor(private produitService:ProduitService,private storage: AngularFireStorage) { }
 
 ngOnInit(): void {
   this.produit=new Produit();
   this.id=localStorage.getItem("id");
   this.read();
+}
+onFileSelected(event) {
+  var n = Date.now();
+  const file = event.target.files[0];
+  const filePath = `/Products/${n}`;
+  const fileRef = this.storage.ref(filePath);
+  const task = this.storage.upload(`/Products/${n}`, file);
+  task
+    .snapshotChanges()
+    .pipe(
+      finalize(() => {
+        this.downloadURL = fileRef.getDownloadURL();
+        this.downloadURL.subscribe((url) => {
+          if (url) {
+            this.fb = url;
+          }
+          console.log(this.fb);
+        });
+      })
+    )
+    .subscribe((url) => {
+      if (url) {
+        console.log(url);
+      }
+    });
 }
 read()
 {
