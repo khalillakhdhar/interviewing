@@ -81,6 +81,8 @@ this.produitService.read_Produits().subscribe(data => {
 }
 add()
 {
+  this.produit.photo = this.fb;
+
   let pr=Object.assign({},this.produits);
 this.produitService.create_NewProduit(pr);
 alert("added successfully");
