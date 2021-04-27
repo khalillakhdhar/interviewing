@@ -106,7 +106,7 @@ name="ville"                  />
 <tr>  <th>Produit</th><th>Détailles</th><th>photo</th><th >Action</th></tr>
 </thead>
 <tbody>
-  <tr *ngFor="let pr of produits">  <td>{{pr.titre}}</td><td>{{pr.description}}/ {{pr.quantite_totale}} (disponible)</td><td><img [src]="pr.photo" height="150" width="150"></td><th><button class="btn btn-success">Sélection</button><br><br> <button class="btn btn-danger">Supprimer</button> </th></tr>
+  <tr *ngFor="let pr of produits">  <td>{{pr.titre}}</td><td>{{pr.description}}/ {{pr.quantite_totale}} (disponible)</td><td><img [src]="pr.photo" height="150" width="150"></td><th><button (click)="selecting(pr)" class="btn btn-success">Sélection</button><br><br> <button class="btn btn-danger">Supprimer</button> </th></tr>
   </tbody>
 <tfoot>
   <tr>  <th>Produit</th><th>Détailles</th><th>photo</th><th>Action</th></tr>
