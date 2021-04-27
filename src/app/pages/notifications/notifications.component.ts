@@ -107,6 +107,17 @@ this.produit=new Produit();
 
 
 }
+update()
+{
+  this.produit.photo = this.fb;
+
+  let pr=Object.assign({},this.produit);
+this.produitService.update_Produit(this.produit.id,pr);
+alert("Modifié");
+this.produit=new Produit();
+
+
+}
 readcats()
 {
   this.cateogrieService.read_Categories().subscribe(data => {
