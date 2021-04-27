@@ -4,7 +4,9 @@ import { Utilisateur } from "src/app/classes/utilisateur";
 import { ProduitService } from "src/app/services/produit.service";
 import { UserService } from "src/app/services/user.service";
 import { Produit } from '../../classes/produit';
-
+import { AngularFireStorage } from "@angular/fire/storage";
+import { map, finalize } from "rxjs/operators";
+import { Observable } from "rxjs";
 @Component({
   selector: "app-notifications",
   templateUrl: "notifications.component.html"
@@ -12,7 +14,9 @@ import { Produit } from '../../classes/produit';
 export class NotificationsComponent implements OnInit {
   id:string;
 grade:string;
-
+downloadURL: Observable<string>;
+selectedFile: File = null;
+fb = "";
 produit:Produit;
 produits:Produit[];
 constructor(private produitService:ProduitService) { }
