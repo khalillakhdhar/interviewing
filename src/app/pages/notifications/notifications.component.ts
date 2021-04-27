@@ -83,7 +83,7 @@ add()
 {
   this.produit.photo = this.fb;
 
-  let pr=Object.assign({},this.produits);
+  let pr=Object.assign({},this.produit);
 this.produitService.create_NewProduit(pr);
 alert("added successfully");
 
