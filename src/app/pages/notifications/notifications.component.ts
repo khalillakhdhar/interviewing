@@ -84,6 +84,18 @@ this.produitService.read_Produits().subscribe(data => {
 
 
 }
+selecting(prod)
+{
+  this.selected=true;
+this.produit=prod;
+}
+deselect()
+{
+  this.selected=false;
+  this.produit=new Produit();
+}
+
+
 add()
 {
   this.produit.photo = this.fb;
