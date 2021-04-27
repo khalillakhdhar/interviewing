@@ -7,6 +7,8 @@ import { Produit } from '../../classes/produit';
 import { AngularFireStorage } from "@angular/fire/storage";
 import { map, finalize } from "rxjs/operators";
 import { Observable } from "rxjs";
+import { Categorie } from "src/app/classes/categorie";
+import { CategorieService } from "src/app/services/categorie.service";
 @Component({
   selector: "app-notifications",
   templateUrl: "notifications.component.html"
@@ -14,14 +16,17 @@ import { Observable } from "rxjs";
 export class NotificationsComponent implements OnInit {
   id:string;
 grade:string;
+categories:Categorie[];
 downloadURL: Observable<string>;
 selectedFile: File = null;
 fb = "product";
 produit:Produit;
 produits:Produit[];
-constructor(private produitService:ProduitService,private storage: AngularFireStorage) { }
+selected=false;
+constructor(private cateogrieService:CategorieService,private produitService:ProduitService,private storage: AngularFireStorage) { }
 
 ngOnInit(): void {
+  this.readcats();
   this.produit=new Produit();
   this.id=localStorage.getItem("id");
   this.read();
@@ -85,8 +90,30 @@ add()
 
   let pr=Object.assign({},this.produit);
 this.produitService.create_NewProduit(pr);
-alert("added successfully");
+alert("ajouté");
+this.produit=new Produit();
 
+
+}
+readcats()
+{
+  this.cateogrieService.read_Categories().subscribe(data => {
+
+    this.categories = data.map(e => {
+      return {
+       id: e.payload.doc.id,
+
+      
+       titre: e.payload.doc.data()["titre"],
+       description: e.payload.doc.data()["description"],
+
+
+
+      };
+    });
+    console.log(this.categories);
+
+  });
 
 }
 }
