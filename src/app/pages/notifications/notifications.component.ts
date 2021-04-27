@@ -16,7 +16,7 @@ export class NotificationsComponent implements OnInit {
 grade:string;
 downloadURL: Observable<string>;
 selectedFile: File = null;
-fb = "";
+fb = "product";
 produit:Produit;
 produits:Produit[];
 constructor(private produitService:ProduitService,private storage: AngularFireStorage) { }
