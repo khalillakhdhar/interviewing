@@ -91,7 +91,8 @@ name="ville"                  />
           </form>
         </div>
         <div class=" card-footer">
-          <button class=" btn btn-fill btn-danger" (click)="add()" type="submit">Ajouter</button>
+          <span *ngIf="selected==false"><button class=" btn btn-fill btn-primary" (click)="add()" type="submit">Ajouter</button></span>
+          <span *ngIf="selected==true"><button class=" btn btn-fill btn-success" (click)="update()" >Modifier</button><button class=" btn btn-fill btn-danger" (click)="deselect()" >Annuler</button></span>
         </div>
       </div>
     </div>
