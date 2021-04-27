@@ -38,7 +38,8 @@
                   <input
                     class="form-control"
                     type="file"
-                    [(ngModel)]="produit.photo"
+                    [(ngModel)]="produit.photo"               (change)="onFileSelected($event)"
+
                     name="photo"
                   />
                 </div>
