@@ -41,7 +41,12 @@ this.categorie=new Categorie();
       };
     });
     console.log(this.categories);
-
+    let i=0;
+for (let ca of this.categories)
+{
+  console.log(i,ca.titre);
+  i++;
+}
   });
 
 }
